@@ -3,7 +3,9 @@ const db = require('./Models');
 let colorOptions = ['1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'c', 'd', 'e', 'f'];
 let myColor = []
 let allColors = [];
+let numOfColors = 128;
 
+//TRY TO FIND MORE EFFICIENT METHOD, LESS BRUTE FORCE
 
 function findRandom(count) {
 
@@ -15,13 +17,12 @@ function findRandom(count) {
 }
 
 function populateColors(count) {
-    findRandom(6*128);
+    findRandom(6 * numOfColors);
     for(let i = 0; i < count; i++){
         if(myColor.length){
-            let color = myColor.splice(0, 6)
-            allColors.push({
-                index: i,
-                hedId: color
+            let color = myColor.splice(0, 6);
+            db.Color.create({
+                hexId: color.join("")
             })
         }
     }
@@ -29,4 +30,4 @@ function populateColors(count) {
     return allColors
 }
 
-console.log(populateColors(128))
+console.log(populateColors(numOfColors))
