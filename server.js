@@ -8,7 +8,7 @@ app.use(express.json({ limit: '10mb'}))
 
 app.use('/allColors', require('./controllers/allColors'))
 
-app.listen(process.env.PORT || 8000, () => {
+app.listen(process.env.PORT || 27017, () => {
     console.log(`You are listening to the sweet sounds of server`);
 })
 
